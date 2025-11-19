@@ -1,10 +1,17 @@
+name: Cassandra Container Test
+
 on: push
+
 jobs:
-  buid-node:
+  run-cassandra:
     runs-on: ubuntu-latest
-    container: node:16
+    container: cassandra:4.1
     steps:
-      - run: node --version
-      - run: npm --version
-      - uses: actions/checkout@v3
-      - run: node app.js
+      - name: Mostrar versión de Cassandra
+        run: cassandra -v
+
+      - name: Mostrar mensaje de prueba
+        run: echo "Hola desde el contenedor de Cassandra"
+
+      - name: Listar archivos de configuración
+        run: ls /etc/cassandra
